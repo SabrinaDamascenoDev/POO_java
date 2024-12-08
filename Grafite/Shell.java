@@ -1,9 +1,8 @@
 import java.util.Scanner;
 class Lead {
     private int size;
-    private String hardness;
-    private double thickness;
-    private Pencil uma;
+    private final String hardness;
+    private final double thickness;
 
     public Lead(double thickness, String hardness, int size){
         this.size = size;
@@ -12,20 +11,13 @@ class Lead {
     }
 
     public int usagePerSheet(){
-        if(hardness.equals("HB")){
-            return 1;
-        }
-        if(hardness.equals("2B")){
-            return 2;
-        }
-        if(hardness.equals("4B")){
-            return 4;
-        }
-        if(hardness.equals("6B")){
-            return 6;
-        } else {
-            return 0;
-        }
+        return switch (hardness) {
+            case "HB" -> 1;
+            case "2B" -> 2;
+            case "4B" -> 4;
+            case "6B" -> 6;
+            default -> 0;
+        };
 
     }
 
