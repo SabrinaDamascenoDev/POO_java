@@ -1,8 +1,8 @@
 import java.util.*;
 
 class Person {
-    private int age;
-    private String nome;
+    private final int age;
+    private final String nome;
 
     public Person(String nome, int age){
         this.nome = nome;
@@ -25,7 +25,7 @@ class Person {
 
 class Motorcycle{
     private Person person;
-    private int power;
+    private final int power;
     private int time;
 
     public Motorcycle(int power){
@@ -144,22 +144,42 @@ class Adapter {
 public class Shell{
     static Adapter adp = new Adapter();
 
-    public static void main(String[] args) {
+    public static void main() {
+        label:
         while(true) {
             write("$");
             String line = input();
-            args = line.split(" ");
+            String[] args = line.split(" ");
             write(line + "\n");
 
-            if      (args[0].equals("end"))      { break;                                       }
-            else if (args[0].equals("show"))     { adp.show();                                  }
-            else if (args[0].equals("init"))     { adp.init((int) number(args[1]));             }
-            else if (args[0].equals("enter"))    { adp.enter(args[1], (int) number(args[2]));   }
-            else if (args[0].equals("buy"))      { adp.buy((int) number(args[1]));              }
-            else if (args[0].equals("drive"))    { adp.drive((int) number(args[1]));            }
-            else if (args[0].equals("honk"))     { adp.honk();                                  }
-            else if (args[0].equals("leave"))    { adp.leave();                                 }
-            else                                 { write("fail: comando invalido\n");       }
+            switch (args[0]) {
+                case "end":
+                    break label;
+                case "show":
+                    adp.show();
+                    break;
+                case "init":
+                    adp.init((int) number(args[1]));
+                    break;
+                case "enter":
+                    adp.enter(args[1], (int) number(args[2]));
+                    break;
+                case "buy":
+                    adp.buy((int) number(args[1]));
+                    break;
+                case "drive":
+                    adp.drive((int) number(args[1]));
+                    break;
+                case "honk":
+                    adp.honk();
+                    break;
+                case "leave":
+                    adp.leave();
+                    break;
+                default:
+                    write("fail: comando invalido\n");
+                    break;
+            }
         }
     }
 
