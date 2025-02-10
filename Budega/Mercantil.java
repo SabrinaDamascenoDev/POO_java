@@ -17,7 +17,7 @@ public class Mercantil {
     }
     public boolean chamarNoCaixa(int indice){
         if(this.espera.isEmpty()){
-            System.out.println("fail: sem clientes");
+            System.out.println("fail: fila vazia");
             return false;
         }else if(caixas.get(indice) != null){
             System.out.println("fail: caixa ocupado");
