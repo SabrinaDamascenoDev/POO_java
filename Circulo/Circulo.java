@@ -19,10 +19,14 @@ public class Circulo {
     public String getColor(){
         return this.color;
     }
+    public double getArea(){
+        return radios*radios*Math.PI;
+    }
     public static void main(String[] args){
         Circulo circ1 = new Circulo(2.25);
         System.out.println(circ1.getRadios());
         System.out.println(circ1.getColor());
+        System.out.println(circ1.getArea());
     }
 }
 
