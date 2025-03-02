@@ -40,8 +40,9 @@ public class Employee {
     }
 
     public int raiseSalary(int percent){
-        int aumento = this.salary*percent/100;
-        return this.salary+aumento;
+        int aumento = (this.salary*percent)/100;
+        this.salary += aumento;
+        return this.salary;
     }
 
     public String toString(){
