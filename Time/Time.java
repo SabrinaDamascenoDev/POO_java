@@ -3,11 +3,12 @@ public class Time {
     private int minute;
     private int second;
 
-    public Time(int hour, int minute, int second){
+    public Time(int hour, int minute, int second) {
         this.hour = hour;
         this.minute = minute;
         this.second = second;
     }
+
 
     public int getHour() {
         return hour;
@@ -33,28 +34,46 @@ public class Time {
         this.second = second;
     }
 
-    public void setTime(int hour, int minute, int second){
-        this.second = second;
-        this.minute = minute;
+    public void setTime(int hour, int minute, int second) {
         this.hour = hour;
+        this.minute = minute;
+        this.second = second;
     }
 
-    public String toString(){
-        if(hour < 10 && minute < 10 && hour < 10){
-            return "0" + hour + ":0" + minute + ":0" + second;
-        } else if(hour < 10 && minute < 10 && hour >= 10){
-            return "0" + hour + ":0" + minute + ":" + second;
-        } else if(hour < 10 && minute >= 10 && hour < 10){
-            return "0" + hour + ":" + minute + ":0" + second;
-        } else if(hour >= 10 && minute < 10 && hour < 10){
-            return hour + ":0" + minute + ":0" + second;
-        } else if(hour >= 10 && minute >= 10 && hour < 10){
-            return hour + ":" + minute + ":0" + second;
-        }  else if(hour >= 10 && minute < 10 && hour >= 10){
-            return hour + ":0" + minute + ":" + second;
-        } else {
-            return "0" + hour + ":" + minute + ":" + second;
+    @Override
+    public String toString() {
+        return String.format("%02d:%02d:%02d", hour, minute, second);
+    }
+
+    public Time nextSecond() {
+        second++;
+        if (second == 60) {
+            second = 0;
+            minute++;
+            if (minute == 60) {
+                minute = 0;
+                hour++;
+                if (hour == 24) {
+                    hour = 0;
+                }
+            }
         }
+        return new Time(hour, minute, second);
     }
 
+    public Time previousSecond() {
+        second--;
+        if (second < 0) {
+            second = 59;
+            minute--;
+            if (minute < 0) {
+                minute = 59;
+                hour--;
+                if (hour < 0) {
+                    hour = 23;
+                }
+            }
+        }
+        return new Time(hour, minute, second);
+    }
 }
